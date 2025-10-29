@@ -1,0 +1,21 @@
+# Core FL Framework
+flwr==1.11.0
+
+# Deep Learning
+torch>=2.0.0
+transformers>=4.35.0
+peft>=0.7.0
+
+# Data Processing
+numpy>=1.24.0
+datasets>=2.14.0
+
+# Utilities
+tqdm>=4.65.0
+
+# Optional but recommended
+tensorboard>=2.14.0  # For monitoring training
+
+# For development/testing
+pytest>=7.4.0  # Unit tests
+black>=23.0.0  # Code formatting
