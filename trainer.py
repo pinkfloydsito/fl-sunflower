@@ -33,7 +33,7 @@ class Trainer:
         self.config = config
         self.logger = logger
 
-        # Training hype.get_parameters
+        # Training hyperparameters
         self.local_epochs = config.training.local_epochs
         self.batch_size = config.training.batch_size
         self.learning_rate = config.training.learning_rate
@@ -50,8 +50,8 @@ class Trainer:
         - Weight decay for regularization
         - Works well out of the box
         """
-        # Only optimize trainable.get_parameters (LoRA adapters)
-        trainable_params = [p for p in self.model.get_parameters() if p.requires_grad]
+        # Only optimize trainable parameters (LoRA adapters)
+        trainable_params = [p for p in self.model.parameters() if p.requires_grad]
 
         optimizer = AdamW(
             trainable_params,
@@ -86,9 +86,7 @@ class Trainer:
             loss.backward()  # Compute new gradients
 
             # Gradient clipping to prevent exploding gradients
-            torch.nn.utils.clip_grad_norm_(
-                self.model.model.get_parameters(), max_norm=1.0
-            )
+            torch.nn.utils.clip_grad_norm_(self.model.model.parameters(), max_norm=1.0)
 
             # Update weights
             self.optimizer.step()
