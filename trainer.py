@@ -51,7 +51,7 @@ class Trainer:
         - Works well out of the box
         """
         # Only optimize trainable parameters (LoRA adapters)
-        trainable_params = [p for p in self.model.parameters() if p.requires_grad]
+        trainable_params = [p for p in self.model.model.parameters() if p.requires_grad]
 
         optimizer = AdamW(
             trainable_params,
